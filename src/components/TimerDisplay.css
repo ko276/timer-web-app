@@ -1,0 +1,68 @@
+
+/* src/components/TimerDisplay.css */
+
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #282c34;
+    color: white;
+}
+
+.timer-circle-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 50px;
+}
+
+.timer-circle {
+    width: 100%;
+    height: 100%;
+}
+
+.timer-circle-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.3);
+    stroke-width: 10;
+}
+
+.timer-circle-progress {
+    fill: none;
+    stroke: red;
+    stroke-width: 10;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s linear;
+}
+
+.timer-time-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.stop-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.end-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 2em;
+    cursor: pointer;
+}
