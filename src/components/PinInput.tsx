@@ -15,12 +15,10 @@ const PinInput: React.FC<PinInputProps> = ({ validatePin, onPinVerified, onClose
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            if (pinAttempt === '') {
-                onClose();
-            }
+            onClose();
         }, 5000);
         return () => clearTimeout(timer);
-    }, [pinAttempt, onClose]);
+    }, [onClose]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;

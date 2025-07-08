@@ -1,10 +1,12 @@
 // src/App.tsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import { useTimer } from './hooks/useTimer';
 import { audioService } from './services/AudioService';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { AlarmSoundType } from './types';
+
 
 // Components (to be created)
 import Settings from './components/Settings';
@@ -45,9 +47,14 @@ function App() {
     const handleTimerEnd = () => {
         stopTimer();
         audioService.stopSound();
+        resetTimer(); // Call resetTimer explicitly
         setSettings({ minutes: 0, seconds: 0 }); // Reset time only
         setShowSettings(true);
     };
+
+    const handleClosePinInput = useCallback(() => {
+        setShowPinInput(false);
+    }, []);
 
     return (
         <div className="App">
@@ -72,7 +79,7 @@ function App() {
                 <PinInput
                     validatePin={validatePin}
                     onPinVerified={handlePinVerified}
-                    onClose={() => setShowPinInput(false)}
+                    onClose={handleClosePinInput}
                 />
             )}
         </div>

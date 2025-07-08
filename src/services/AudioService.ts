@@ -120,7 +120,7 @@ class AudioService {
         this.createOscillator(440);
         this.gainNode?.gain.setValueAtTime(0.5, this.audioContext.currentTime);
         this.oscillator?.stop(this.audioContext.currentTime + 0.5);
-        this.timeoutIds.push(window.setTimeout(() => this.stopSound(), 500)); // Stop after 0.5s beep
+        
     }
 
     private playSirenOnce() {
@@ -130,14 +130,13 @@ class AudioService {
         this.oscillator?.frequency.linearRampToValueAtTime(1200, now + 1);
         this.oscillator?.frequency.linearRampToValueAtTime(800, now + 2);
         this.oscillator?.stop(now + 2);
-        this.timeoutIds.push(window.setTimeout(() => this.stopSound(), 2000)); // Stop after 2s cycle
+        
     }
 
     private playWarbleOnce() {
         let is600Hz = true;
         const playNextSegment = (segmentCount: number) => {
             if (segmentCount <= 0) {
-                this.stopSound();
                 return;
             }
             this.createOscillator(is600Hz ? 600 : 1000);
@@ -153,7 +152,6 @@ class AudioService {
         this.createOscillator(400, 'square');
         this.gainNode?.gain.setValueAtTime(0.5, this.audioContext.currentTime);
         this.oscillator?.stop(this.audioContext.currentTime + 1);
-        this.timeoutIds.push(window.setTimeout(() => this.stopSound(), 1000));
     }
 
     private playBellOnce() {
@@ -162,27 +160,23 @@ class AudioService {
         this.gainNode?.gain.setValueAtTime(0.5, now);
         this.gainNode?.gain.exponentialRampToValueAtTime(0.0001, now + 0.3); // Decay
         this.oscillator?.stop(now + 0.3);
-        this.timeoutIds.push(window.setTimeout(() => this.stopSound(), 300));
     }
 
     private playHornOnce() {
         this.createOscillator(200);
         this.gainNode?.gain.setValueAtTime(0.5, this.audioContext.currentTime);
         this.oscillator?.stop(this.audioContext.currentTime + 1);
-        this.timeoutIds.push(window.setTimeout(() => this.stopSound(), 1000));
     }
 
     private playPhoneRingtoneOnce() {
         const playSegment = (segmentIndex: number) => {
             if (segmentIndex >= 3) {
-                this.stopSound();
                 return;
             }
             this.createOscillator(600);
             this.gainNode?.gain.setValueAtTime(0.5, this.audioContext.currentTime);
             this.oscillator?.stop(this.audioContext.currentTime + 0.4);
             this.timeoutIds.push(window.setTimeout(() => {
-                this.stopSound();
                 if (segmentIndex < 2) { // Only add silence between first two tones
                     this.timeoutIds.push(window.setTimeout(() => playSegment(segmentIndex + 1), 200)); // 0.2s silence
                 } else {
