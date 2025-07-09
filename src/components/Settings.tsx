@@ -34,6 +34,18 @@ const Settings: React.FC<SettingsProps> = ({ settings, setSettings, onStart }) =
         }
     };
 
+    const handleMinutesFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        if (e.target.value === '0') {
+            setMinutesInput('');
+        }
+    };
+
+    const handleSecondsFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        if (e.target.value === '0') {
+            setSecondsInput('');
+        }
+    };
+
     const handlePinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setPinInput(value);
@@ -61,16 +73,22 @@ const Settings: React.FC<SettingsProps> = ({ settings, setSettings, onStart }) =
                 <div className="time-input-group">
                     <input
                         type="number"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
                         value={minutesInput}
                         onChange={handleMinutesChange}
+                        onFocus={handleMinutesFocus}
                         min="0"
                         placeholder="分"
                     />
                     <span>分</span>
                     <input
                         type="number"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
                         value={secondsInput}
                         onChange={handleSecondsChange}
+                        onFocus={handleSecondsFocus}
                         min="0"
                         placeholder="秒"
                     />
@@ -82,6 +100,8 @@ const Settings: React.FC<SettingsProps> = ({ settings, setSettings, onStart }) =
                 <label>PINコード:</label>
                 <input
                     type="password"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                     value={pinInput}
                     onChange={handlePinChange}
                     maxLength={4}

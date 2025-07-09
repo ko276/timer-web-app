@@ -40,6 +40,8 @@ const PinInput: React.FC<PinInputProps> = ({ validatePin, onPinVerified, onClose
                 <h3>PINコードを入力してください</h3>
                 <input
                     type="password"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                     value={pinAttempt}
                     onChange={handleChange}
                     maxLength={4}
