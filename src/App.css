@@ -4,9 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  min-height: -webkit-fill-available; /* For iOS Safari */
-  min-height: fill-available; /* Standard */
+  min-height: calc(var(--vh, 1vh) * 100);
   background-color: #282c34;
   color: white;
 }
