@@ -60,7 +60,7 @@ const TimerDisplay: React.FC<TimerDisplayProps> = ({
 
             {isFinished && (
                 <button className="end-button" onClick={onTimerEnd}>
-                    おわる
+                    おわり
                 </button>
             )}
         </div>

@@ -13,8 +13,8 @@
 
 .timer-circle-container {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 80vmin;
+    height: 80vmin;
     margin-bottom: 50px;
 }
 
@@ -32,7 +32,7 @@
 .timer-circle-progress {
     fill: none;
     stroke: red;
-    stroke-width: 10;
+    stroke-width: 20;
     stroke-linecap: round;
     transition: stroke-dashoffset 1s linear;
 }
@@ -58,7 +58,7 @@
 }
 
 .end-button {
-    background-color: green;
+    background-color: red;
     color: white;
     border: none;
     padding: 20px 40px;
