@@ -21,7 +21,7 @@ const initialSettings: TimerSettings = {
     seconds: 0,
     pinCode: "0000",
     alarmSound: AlarmSoundType.BEEP,
-    alarmVolume: 0.5,
+    isSoundEnabled: true,
 };
 
 const initialTimerState: TimerState = {

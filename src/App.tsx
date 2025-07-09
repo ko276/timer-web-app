@@ -20,9 +20,9 @@ function App() {
 
     useEffect(() => {
         if (timerState.isFinished) {
-            audioService.startContinuousAlarm(settings.alarmSound, settings.alarmVolume);
+            audioService.startContinuousAlarm(settings.alarmSound, settings.isSoundEnabled);
         }
-    }, [timerState.isFinished, settings.alarmSound, settings.alarmVolume]);
+    }, [timerState.isFinished, settings.alarmSound, settings.isSoundEnabled]);
 
     const handleStartTimer = () => {
         audioService.resumeAudioContext(); // Resume audio context on user interaction

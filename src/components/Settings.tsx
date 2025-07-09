@@ -67,14 +67,11 @@ const Settings: React.FC<SettingsProps> = ({ settings, setSettings, onStart }) =
     const handleAlarmSoundChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newSoundType = e.target.value as AlarmSoundType;
         setSettings({ alarmSound: newSoundType });
-        audioService.previewSound(newSoundType, settings.alarmVolume); // Play preview sound
+        audioService.previewSound(newSoundType, settings.isSoundEnabled); // Play preview sound
     };
 
-    const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newVolume = parseFloat(e.target.value);
-        setSettings({ alarmVolume: newVolume });
-        // Optionally, play a short sound to preview volume change
-        // audioService.previewSound(settings.alarmSound, newVolume, 500);
+    const handleSoundToggle = () => {
+        setSettings({ isSoundEnabled: !settings.isSoundEnabled });
     };
 
     const alarmSoundNames: Record<AlarmSoundType, string> = {
@@ -145,15 +142,19 @@ const Settings: React.FC<SettingsProps> = ({ settings, setSettings, onStart }) =
             </div>
 
             <div className="setting-group">
-                <label>音量:</label>
-                <input
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.01"
-                    value={settings.alarmVolume}
-                    onChange={handleVolumeChange}
-                />
+                <label>音のオン/オフ:</label>
+                <div onClick={handleSoundToggle} style={{ cursor: 'pointer' }}>
+                    {settings.isSoundEnabled ? (
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px">
+                            <path d="M12 2C9.79 2 8 3.79 8 6v7c0 1.66-1.34 3-3 3H3v2h18v-2h-2c-1.66 0-3-1.34-3-3V6c0-2.21-1.79-4-4-4zm-1 17h2v2h-2v-2z"/>
+                        </svg>
+                    ) : (
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px">
+                            <path d="M12 2c-2.21 0-4 1.79-4 4v7c0 1.66-1.34 3-3 3H3v2h18v-2h-2c-1.66 0-3-1.34-3-3V6c0-2.21-1.79-4-4-4zm-1 17h2v2h-2v-2z"/>
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="red"/>
+                        </svg>
+                    )}
+                </div>
             </div>
 
             <button onClick={onStart}>タイマー開始</button>

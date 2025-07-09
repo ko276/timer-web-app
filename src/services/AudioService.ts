@@ -26,11 +26,7 @@ class AudioService {
         this.oscillator.start();
     }
 
-    setVolume(volume: number) {
-        if (this.gainNode) {
-            this.gainNode.gain.setValueAtTime(volume, this.audioContext.currentTime);
-        }
-    }
+    
 
     stopSound() {
         if (this.oscillator) {
@@ -53,9 +49,8 @@ class AudioService {
     }
 
     // Plays one cycle of the sound
-    private playSingleCycleSound(type: AlarmSoundType, volume: number) {
+    private playSingleCycleSound(type: AlarmSoundType) {
         this.stopSound(); // Stop any previous sound
-        this.setVolume(volume);
 
         switch (type) {
             case AlarmSoundType.BEEP:
@@ -83,12 +78,14 @@ class AudioService {
     }
 
     // Starts continuous alarm playback (for when timer finishes)
-    startContinuousAlarm(type: AlarmSoundType, volume: number) {
+    startContinuousAlarm(type: AlarmSoundType, isSoundEnabled: boolean) {
+        if (!isSoundEnabled) {
+            return;
+        }
         this.stopSound(); // Stop any previous sound
-        this.setVolume(volume);
 
         const playAndScheduleNext = () => {
-            this.playSingleCycleSound(type, volume);
+            this.playSingleCycleSound(type);
             let nextCycleDelay = 0;
             switch (type) {
                 case AlarmSoundType.BEEP:
@@ -113,8 +110,11 @@ class AudioService {
     }
 
     // Previews sound once (for settings screen)
-    previewSound(type: AlarmSoundType, volume: number, duration: number = 1000) { // Default to 1 second
-        this.playSingleCycleSound(type, volume);
+    previewSound(type: AlarmSoundType, isSoundEnabled: boolean, duration: number = 1000) { // Default to 1 second
+        if (!isSoundEnabled) {
+            return;
+        }
+        this.playSingleCycleSound(type);
         this.timeoutIds.push(window.setTimeout(() => {
             this.stopSound();
         }, duration));

@@ -16,7 +16,7 @@ export interface TimerSettings {
     seconds: number;
     pinCode: string;
     alarmSound: AlarmSoundType;
-    alarmVolume: number;
+    isSoundEnabled: boolean;
 }
 
 export interface TimerState {
