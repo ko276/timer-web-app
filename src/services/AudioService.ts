@@ -52,25 +52,25 @@ class AudioService {
         this.setVolume(volume);
 
         switch (type) {
-            case AlarmSoundType.Beep:
+            case AlarmSoundType.BEEP:
                 this.playBeepOnce();
                 break;
-            case AlarmSoundType.Siren:
+            case AlarmSoundType.SIREN:
                 this.playSirenOnce();
                 break;
-            case AlarmSoundType.Warble:
+            case AlarmSoundType.WARBLE:
                 this.playWarbleOnce();
                 break;
-            case AlarmSoundType.Buzzer:
+            case AlarmSoundType.BUZZER:
                 this.playBuzzerOnce();
                 break;
-            case AlarmSoundType.Bell:
+            case AlarmSoundType.BELL:
                 this.playBellOnce();
                 break;
-            case AlarmSoundType.Horn:
+            case AlarmSoundType.HORN:
                 this.playHornOnce();
                 break;
-            case AlarmSoundType.PhoneRingtone:
+            case AlarmSoundType.PHONERINGTONE:
                 this.playPhoneRingtoneOnce();
                 break;
         }
@@ -85,16 +85,16 @@ class AudioService {
             this.playSingleCycleSound(type, volume);
             let nextCycleDelay = 0;
             switch (type) {
-                case AlarmSoundType.Beep:
+                case AlarmSoundType.BEEP:
                     nextCycleDelay = 1000; // 0.5s beep + 0.5s silence
                     break;
-                case AlarmSoundType.Siren:
+                case AlarmSoundType.SIREN:
                     nextCycleDelay = 2000; // 1s up + 1s down
                     break;
-                case AlarmSoundType.Warble:
+                case AlarmSoundType.WARBLE:
                     nextCycleDelay = 400; // 0.2s tone + 0.2s tone
                     break;
-                case AlarmSoundType.PhoneRingtone:
+                case AlarmSoundType.PHONERINGTONE:
                     nextCycleDelay = 2000 + (0.4 + 0.2) * 3 * 1000; // 3 tones with silence + 2s interval
                     break;
                 default:
