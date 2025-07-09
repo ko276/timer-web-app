@@ -20,7 +20,7 @@ const initialSettings: TimerSettings = {
     minutes: 0,
     seconds: 0,
     pinCode: "0000",
-    alarmSound: AlarmSoundType.PhoneRingtone,
+    alarmSound: AlarmSoundType.BEEP,
     alarmVolume: 0.5,
 };
 
