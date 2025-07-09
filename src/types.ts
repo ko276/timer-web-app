@@ -10,14 +10,6 @@ export enum AlarmSoundType {
     HORN = 'Horn',
     PHONERINGTONE = 'PhoneRingtone',
 }
-    PhoneRingtone = "電話着信音",
-    Beep = "ビープ音",
-    Siren = "サイレン音",
-    Warble = "ワーベル音",
-    Buzzer = "ブザー音",
-    Bell = "ベル音",
-    Horn = "ホーン音",
-}
 
 export interface TimerSettings {
     minutes: number;
