@@ -1,4 +1,3 @@
-
 /* src/components/TimerDisplay.css */
 
 .timer-container {
@@ -58,13 +57,20 @@
 }
 
 .end-button {
-    background-color: red;
     color: white;
     border: none;
     padding: 20px 40px;
     border-radius: 10px;
     font-size: 2em;
     cursor: pointer;
+}
+
+.end-button.red-bg {
+    background-color: red;
+}
+
+.end-button.blue-bg {
+    background-color: deepskyblue; /* 水色 */
 }
 
 @media (orientation: landscape) {

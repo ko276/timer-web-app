@@ -1,7 +1,7 @@
 
 // src/components/TimerDisplay.tsx
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './TimerDisplay.css'; // For styling the circle
 
 interface TimerDisplayProps {
@@ -21,6 +21,19 @@ const TimerDisplay: React.FC<TimerDisplayProps> = ({
     onStopRequest,
     onTimerEnd,
 }) => {
+    const [isRed, setIsRed] = useState(true);
+
+    useEffect(() => {
+        if (isFinished) {
+            const interval = setInterval(() => {
+                setIsRed(prevIsRed => !prevIsRed);
+            }, 500);
+            return () => clearInterval(interval);
+        }
+    }, [isFinished]);
+
+    const endButtonClassName = `end-button ${isRed ? 'red-bg' : 'blue-bg'}`;
+
     const minutes = Math.floor(remainingTime / 60);
     const seconds = remainingTime % 60;
 
@@ -59,7 +72,7 @@ const TimerDisplay: React.FC<TimerDisplayProps> = ({
             )}
 
             {isFinished && (
-                <button className="end-button" onClick={onTimerEnd}>
+                <button className={endButtonClassName} onClick={onTimerEnd}>
                     おわり
                 </button>
             )}
