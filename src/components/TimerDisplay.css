@@ -6,9 +6,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100vh;
     background-color: #282c34;
     color: white;
-    height: 100%; /* Fill parent height */
 }
 
 .timer-circle-container {
@@ -65,4 +65,11 @@
     border-radius: 10px;
     font-size: 2em;
     cursor: pointer;
+}
+
+@media (orientation: landscape) {
+    .timer-circle-container {
+        width: 50vmin;
+        height: 50vmin;
+    }
 }
