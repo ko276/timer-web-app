@@ -5,6 +5,8 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-height: -webkit-fill-available; /* For iOS Safari */
+  min-height: fill-available; /* Standard */
   background-color: #282c34;
   color: white;
 }
