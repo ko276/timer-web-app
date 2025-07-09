@@ -19,30 +19,42 @@ const Settings: React.FC<SettingsProps> = ({ settings, setSettings, onStart }) =
     const handleMinutesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setMinutesInput(value);
-        const minutes = parseInt(value, 10);
-        if (!isNaN(minutes)) {
-            setSettings({ minutes });
-        }
     };
 
     const handleSecondsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setSecondsInput(value);
-        const seconds = parseInt(value, 10);
-        if (!isNaN(seconds)) {
-            setSettings({ seconds });
-        }
     };
 
     const handleMinutesFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (e.target.value === '0') {
-            setMinutesInput('');
-        }
+        setMinutesInput('');
     };
 
     const handleSecondsFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (e.target.value === '0') {
-            setSecondsInput('');
+        setSecondsInput('');
+    };
+
+    const handleMinutesBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        if (e.target.value === '') {
+            setMinutesInput('0');
+            setSettings({ minutes: 0 });
+        } else {
+            const minutes = parseInt(e.target.value, 10);
+            if (!isNaN(minutes)) {
+                setSettings({ minutes });
+            }
+        }
+    };
+
+    const handleSecondsBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        if (e.target.value === '') {
+            setSecondsInput('0');
+            setSettings({ seconds: 0 });
+        } else {
+            const seconds = parseInt(e.target.value, 10);
+            if (!isNaN(seconds)) {
+                setSettings({ seconds });
+            }
         }
     };
 
@@ -88,6 +100,7 @@ const Settings: React.FC<SettingsProps> = ({ settings, setSettings, onStart }) =
                         value={minutesInput}
                         onChange={handleMinutesChange}
                         onFocus={handleMinutesFocus}
+                        onBlur={handleMinutesBlur}
                         min="0"
                         placeholder="分"
                     />
@@ -99,6 +112,7 @@ const Settings: React.FC<SettingsProps> = ({ settings, setSettings, onStart }) =
                         value={secondsInput}
                         onChange={handleSecondsChange}
                         onFocus={handleSecondsFocus}
+                        onBlur={handleSecondsBlur}
                         min="0"
                         placeholder="秒"
                     />
