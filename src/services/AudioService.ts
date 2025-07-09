@@ -46,6 +46,12 @@ class AudioService {
         this.timeoutIds = [];
     }
 
+    async resumeAudioContext() {
+        if (this.audioContext.state === 'suspended') {
+            await this.audioContext.resume();
+        }
+    }
+
     // Plays one cycle of the sound
     private playSingleCycleSound(type: AlarmSoundType, volume: number) {
         this.stopSound(); // Stop any previous sound

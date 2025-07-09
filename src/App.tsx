@@ -25,6 +25,7 @@ function App() {
     }, [timerState.isFinished, settings.alarmSound, settings.alarmVolume]);
 
     const handleStartTimer = () => {
+        audioService.resumeAudioContext(); // Resume audio context on user interaction
         // Set initial time for the timer if it's 0
         if (settings.minutes === 0 && settings.seconds === 0) {
             setSettings({ minutes: 0, seconds: 0 }); // Ensure remainingTime is 0

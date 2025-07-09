@@ -65,6 +65,16 @@ const Settings: React.FC<SettingsProps> = ({ settings, setSettings, onStart }) =
         // audioService.previewSound(settings.alarmSound, newVolume, 500);
     };
 
+    const alarmSoundNames: Record<AlarmSoundType, string> = {
+        [AlarmSoundType.BEEP]: 'ビープ音',
+        [AlarmSoundType.SIREN]: 'サイレン音',
+        [AlarmSoundType.WARBLE]: 'ワーブル音',
+        [AlarmSoundType.BUZZER]: 'ブザー音',
+        [AlarmSoundType.BELL]: 'ベル音',
+        [AlarmSoundType.HORN]: 'ホーン音',
+        [AlarmSoundType.PHONERINGTONE]: '電話着信音',
+    };
+
     return (
         <div className="settings-container">
             <h2>設定</h2>
@@ -114,7 +124,7 @@ const Settings: React.FC<SettingsProps> = ({ settings, setSettings, onStart }) =
                 <select value={settings.alarmSound} onChange={handleAlarmSoundChange}>
                     {Object.values(AlarmSoundType).map(soundType => (
                         <option key={soundType} value={soundType}>
-                            {soundType}
+                            {alarmSoundNames[soundType]}
                         </option>
                     ))}
                 </select>
